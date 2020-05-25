@@ -45,13 +45,13 @@ steps:
     arguments: '--no-restore --configuration $(buildConfiguration)'
     projects: '**/*.csproj'
 
-- task: DotNetCoreCLI@2
-  displayName: 'Run unit tests - $(buildConfiguration)'
-  inputs:
-    projects: '**/*.Tests.csproj'
-    command: 'test'
-    arguments: --no-build -c $(buildConfiguration) 
-    publishTestResults: true
+# - task: DotNetCoreCLI@2
+#   displayName: 'Run unit tests - $(buildConfiguration)'
+#   inputs:
+#     projects: '**/*.Tests.csproj'
+#     command: 'test'
+#     arguments: --no-build -c $(buildConfiguration) 
+#     publishTestResults: true
 
 
 # - script: 'install --global dotnet-reportgenerator-globaltool'
@@ -77,7 +77,7 @@ steps:
     reportgenerator -reports:$(Build.SourcesDirectory)/**/coverage.cobertura.xml -targetdir:$(Build.SourcesDirectory)/CodeCoverage -reporttypes:HtmlInline_AzurePipelines
   displayName: 'Create code coverage report'
 
-  
+
 - task: PublishCodeCoverageResults@1
   displayName: 'Publish code coverage report'
   inputs:
